@@ -1,4 +1,3 @@
-
 return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
@@ -23,19 +22,22 @@ return {
                 table.insert(file_paths, item.value)
             end
 
-            require("telescope.pickers").new({}, {
-                prompt_title = "Harpoon",
-                finder = require("telescope.finders").new_table({
-                    results = file_paths,
-                }),
-                previewer = conf.file_previewer({}),
-                sorter = conf.generic_sorter({}),
-            }):find()
+            require("telescope.pickers")
+                .new({}, {
+                    prompt_title = "Harpoon",
+                    finder = require("telescope.finders").new_table({
+                        results = file_paths,
+                    }),
+                    previewer = conf.file_previewer({}),
+                    sorter = conf.generic_sorter({}),
+                })
+                :find()
         end
 
         -- Keymap to toggle the Telescope picker for Harpoon
-        vim.keymap.set("n", "<C-s>", function() toggle_telescope(harpoon:list()) end,
-            { desc = "Open harpoon window" })
+        vim.keymap.set("n", "<C-s>", function()
+            toggle_telescope(harpoon:list())
+        end, { desc = "Open harpoon window" })
 
         -- Select specific files from Harpoon
         vim.keymap.set("n", "<C-n>", function()
@@ -60,4 +62,3 @@ return {
         end)
     end,
 }
-
